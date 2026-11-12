@@ -24,7 +24,8 @@ flowchart TD
 
     OK --> R["/feature-review slug<br/>QA full run → Staff review"]
     R -->|findings| F
-    R --> G3{{You review the branch}}
+    R --> DF["Staff → dataflow.md<br/>as-built diagram"]
+    DF --> G3{{You review the branch}}
     G3 --> P["/feature-pr slug → gh pr create"]
 ```
 
@@ -71,6 +72,7 @@ docs/
     findings/P2-qa-1.md   # QA → Senior requested changes
     findings/P2-staff-1.md
     staff-review.md       # Staff: final verdict
+    dataflow.md           # Staff: as-built dataflow (flowchart, sequences, ER, data dictionary, cache map, drift)
 ```
 
 Agents pass **file paths**, not chat summaries, so every decision can be traced and the work survives `/clear` or a new session. Pick up anywhere with `/feature-status <slug>`.
@@ -91,7 +93,7 @@ IDs tie it together: `R#` requirement → `T#` acceptance test → `P#` piece �
 /feature-check coupon-codes P2
 /feature-build coupon-codes all                # continues after P2
 /feature-review coupon-codes
-  → read the lead review brief, review the diff yourself
+  → read the lead review brief (with the as-built dataflow diagram), review the diff yourself
 /feature-pr coupon-codes
 ```
 

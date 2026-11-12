@@ -12,7 +12,10 @@ Feature slug: $ARGUMENTS
    - Collect the BLOCKER and SHOULD findings. Write them per piece to `docs/features/$ARGUMENTS/findings/P#-staff-<round>.md`.
    - Send `agent` pieces to the **senior-engineer** and then the **qa-engineer**. Show me the findings for `me` pieces.
    - Run the staff review again. Stop and escalate to me after 2 rounds.
-5. When it's `APPROVED`, tick the gate and give me a **lead review brief**:
+5. When it's `APPROVED`, tick the gate.
+6. **As-built dataflow:** run the **staff-engineer** in **Mode C** to write `docs/features/$ARGUMENTS/dataflow.md` from the final branch. If it finds data that the plan's impact map missed, show it to me as a SHOULD finding. I decide whether it needs a fix before the PR.
+7. Give me a **lead review brief**:
+   - the **dataflow overview diagram** (embed the Mermaid block from `dataflow.md`) and its drift table
    - the commit list (`git log --oneline <base>..HEAD`)
    - the files with the highest risk, and what to look at in each
    - the requirement coverage table

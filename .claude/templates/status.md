@@ -14,5 +14,6 @@ Status values: `todo → in-progress → built → qa-pass → done` · `qa-fail
 - [ ] All pieces qa-pass
 - [ ] Final QA run (all) PASS
 - [ ] Staff review APPROVED
+- [ ] As-built dataflow written
 - [ ] Lead review done
 - [ ] PR opened

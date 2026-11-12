@@ -13,8 +13,8 @@ Feature slug: $ARGUMENTS
    - **What changed**: a per-piece list with commit SHAs
    - **Impact**: the indirect-impact table from the plan, summarised
    - **Requirements & tests**: the coverage table from qa-report.md
-   - **Diagrams**: link to technical-design.md (or embed the main Mermaid diagram)
+   - **Dataflow**: embed the overview flowchart from `dataflow.md` (GitHub renders Mermaid) and its cache map. Link the full file for the sequence and ER diagrams.
    - **Manual QA steps**
-   - **Docs**: links to plan / design / qa-report / staff-review
+   - **Docs**: links to plan / design / dataflow / qa-report / staff-review
 5. Tick the gate and add the PR link to status.md. Leave that change uncommitted unless I ask; it's bookkeeping.
 6. Give me the PR URL.
