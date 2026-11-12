@@ -12,6 +12,7 @@ This repo uses the feature workflow in `.claude/` (see WORKFLOW.md). Feature rec
 - Integration DB: `pnpm db:test:reset` (uses `DATABASE_URL` from `.env.test`)
 - E2E: `pnpm e2e` (Playwright, needs `pnpm dev` or uses `webServer` config)
 - Build: `pnpm build`
+- Primitives (React): `pnpm lint:primitives:changed` (see scripts/react/README.md)
 - Prisma: `pnpm prisma migrate dev --name <name>` · generate: `pnpm prisma generate`
 
 ### Conventions

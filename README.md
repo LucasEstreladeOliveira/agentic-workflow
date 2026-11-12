@@ -94,6 +94,12 @@ IDs tie it together: `R#` requirement → `T#` acceptance test → `P#` piece �
 /feature-pr coupon-codes
 ```
 
+## Guard scripts
+
+`scripts/react/` has deterministic checks that agents run instead of spending tokens on rule-following reviews. See [scripts/react/README.md](scripts/react/README.md).
+
+- `check-primitives.mjs`: flags raw HTML tags (`<input>`, `<button>`, …) that should be design-system primitives. Works in CI, lint-staged, and as a Claude Code hook.
+
 ## Tuning tips
 
 - **Piece size**: if the senior agent's commits get large, tighten "~300 lines" in the PM prompt. Small pieces make QA rounds much cheaper.

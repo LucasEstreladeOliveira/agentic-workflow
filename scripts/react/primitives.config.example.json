@@ -1,0 +1,28 @@
+{
+  "include": ["src"],
+  "exclude": [
+    "src/components/ui/**",
+    "**/*.stories.tsx",
+    "**/*.test.tsx",
+    "**/*.spec.tsx"
+  ],
+  "extensions": [".tsx", ".jsx"],
+  "checkCreateElement": true,
+  "checkStyled": true,
+  "requireIgnoreReason": true,
+  "rules": {
+    "input":    { "use": "Input",    "from": "@/components/ui/input", "allowIf": { "type": ["hidden"] } },
+    "button":   { "use": "Button",   "from": "@/components/ui/button" },
+    "textarea": { "use": "Textarea", "from": "@/components/ui/textarea" },
+    "select":   { "use": "Select",   "from": "@/components/ui/select" },
+    "label":    { "use": "Label",    "from": "@/components/ui/label" },
+    "a":        { "use": "Link",     "from": "@/components/ui/link" },
+    "img":      { "use": "Image",    "from": "@/components/ui/image" },
+    "table":    { "use": "Table",    "from": "@/components/ui/table" },
+    "dialog":   { "use": "Dialog",   "from": "@/components/ui/dialog" },
+    "hr":       { "use": "Separator","from": "@/components/ui/separator" },
+    "h1":       { "use": "Heading",  "from": "@/components/ui/typography", "message": "use <Heading level={1} /> from \"@/components/ui/typography\"" },
+    "h2":       { "use": "Heading",  "from": "@/components/ui/typography", "message": "use <Heading level={2} /> from \"@/components/ui/typography\"" },
+    "h3":       { "use": "Heading",  "from": "@/components/ui/typography", "message": "use <Heading level={3} /> from \"@/components/ui/typography\"" }
+  }
+}
