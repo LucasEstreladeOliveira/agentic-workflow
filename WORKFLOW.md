@@ -38,6 +38,7 @@ Copy into the root of each repo:
   commands/    map-project  feature-plan  feature-design  feature-build  feature-check  feature-review  feature-pr  feature-status
   hooks/       restrict-writes.mjs
   templates/   system-map.md  plan.md  technical-design.md  qa-report.md  status.md
+  skills/      design-system  new-component  data-flow  forms  state-decision  figma-to-code  ui-verification  frontend-testing  guard-burndown
 ```
 
 Then add the snippet from `CLAUDE.workflow-snippet.md` to the repo's `CLAUDE.md` and fill in the real commands. Every agent reads it to know how to typecheck, lint, test and run E2E. Commit `.claude/` so the team (and other machines) get the same setup.
@@ -93,6 +94,24 @@ IDs tie it together: `R#` requirement → `T#` acceptance test → `P#` piece �
   → read the lead review brief, review the diff yourself
 /feature-pr coupon-codes
 ```
+
+## Skills
+
+`.claude/skills/` holds project skills. Agents load them on demand, and the agent files list which skills each role gets. Skills with a `scripts/` folder push the mechanical part into a tested script, so the agent spends tokens on judgement, not boilerplate.
+
+| Skill | Used by | What it gives the agent | Script |
+|---|---|---|---|
+| `design-system` | PM, Staff, Senior | catalog of primitives (props, variants), token rules, what to do about gaps | `build-catalog.mjs`: generates `catalog.md` from `src/components/ui` (React + Vue), `--check` for CI |
+| `new-component` | Senior | where a component lives, then scaffolding that already passes the guards | `scaffold-component.mjs`: component + test + story + public-API export |
+| `data-flow` | Staff, Senior | Prisma → API → client fn → query hook → UI states; key factories, invalidation | references for TanStack Query (React) and Vue Query/Nuxt |
+| `forms` | Senior | zod schema first, field primitives, server-error mapping, a11y | references for react-hook-form and vee-validate |
+| `state-decision` | Staff, Senior | decision tree: server cache / URL / form / derived / local / context / store | n/a |
+| `figma-to-code` | Staff | design → primitives/tokens mapping table, gap handling, visual check | `nearest-token.mjs`: raw value → closest token (OKLab colors, CSS vars, Tailwind v4 `@theme`, JSON tokens) |
+| `ui-verification` | Senior, QA | real-browser check before "done" | `verify-ui.mjs`: screenshots per breakpoint, overflow, console/runtime errors, failed requests, a11y (axe if installed), focus order |
+| `frontend-testing` | QA | test level choice, Testing Library + MSW + factories, Playwright, `[T#][R#]` naming, anti-patterns | references for React, Vue, E2E |
+| `guard-burndown` | Senior / you | pays down `.react-guards-baseline.json` in small, behaviour-safe slices | `baseline-report.mjs`: summary, `--next` slice, `--slice` file lists |
+
+Add `.ui-verify/` to `.gitignore`. The skills assume the guard scripts and the conventions in `CLAUDE.md`. Adjust paths (`src/components/ui`, `src/api`, `@/`) in each SKILL.md if a project differs.
 
 ## Guard scripts
 

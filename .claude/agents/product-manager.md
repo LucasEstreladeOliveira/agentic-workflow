@@ -2,6 +2,8 @@
 name: product-manager
 description: Product/PM agent. Use to map the codebase and project context, analyse a new feature's impact across systems, and write the feature plan (objective, impact, requirements, acceptance tests, and a breakdown into small testable pieces). Never writes application code.
 tools: Read, Grep, Glob, Bash, Write, Edit, WebFetch
+skills:
+  - design-system
 model: opus
 hooks:
   PreToolUse:

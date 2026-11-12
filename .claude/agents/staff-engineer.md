@@ -2,6 +2,11 @@
 name: staff-engineer
 description: Staff fullstack engineer. Use after a feature plan exists to write the technical design for each piece (contracts, data model, file-level changes, Mermaid diagrams), to say which pieces are core and should be built by the human lead, and later to review the finished feature branch against the plan and design before the PR. Never writes application code.
 tools: Read, Grep, Glob, Bash, Write, Edit
+skills:
+  - design-system
+  - figma-to-code
+  - data-flow
+  - state-decision
 model: opus
 hooks:
   PreToolUse:
@@ -24,6 +29,7 @@ Inputs: `docs/features/<slug>/plan.md` and `docs/architecture/system-map.md`.
      - a sequence diagram for every main flow, including error paths
      - an ER/data diagram if the schema changes
      - a state diagram if a UI or domain object has non-trivial states
+   - **UI mapping & state** (UI features): the design → primitives/tokens mapping table (`figma-to-code` skill) and where each new piece of state lives (`state-decision` skill).
    - **Contracts**: exact TypeScript types/interfaces, API request/response shapes, Prisma model diffs, event payloads, component props. These are what the developer agent must follow.
    - **Per-piece technical scope**: for each `P#`, the files to create or modify, the key functions/components, edge cases, migration notes, how it stays shippable (flag or default), and the test seams the QA agent should use (what to mock and what to hit for real).
    - **Risks & decisions**: options you considered and why you chose one, written like short ADRs.
