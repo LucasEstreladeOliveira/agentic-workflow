@@ -98,7 +98,18 @@ IDs tie it together: `R#` requirement → `T#` acceptance test → `P#` piece �
 
 `scripts/react/` has deterministic checks that agents run instead of spending tokens on rule-following reviews. See [scripts/react/README.md](scripts/react/README.md).
 
-- `check-primitives.mjs`: flags raw HTML tags (`<input>`, `<button>`, …) that should be design-system primitives. Works in CI, lint-staged, and as a Claude Code hook.
+| Script | Catches |
+|---|---|
+| `check-primitives.mjs` | raw HTML tags (`<input>`, `<button>`…) that should be design-system primitives |
+| `check-design-tokens.mjs` | hardcoded colors, px/rem values, Tailwind arbitrary values |
+| `check-naming.mjs` | file/folder/component/hook naming, one component per file |
+| `check-component-size.mjs` | god components: length, state, effects, props, JSX depth |
+| `check-data-fetching.mjs` | fetch/axios outside the API layer, fetching in `useEffect` |
+| `check-all.mjs` | all of the above in one pass, the one to use in hooks and CI |
+
+All share one config (`react-guards.config.json`), support `--changed`, `--hook` and a baseline for existing codebases.
+
+`configs/eslint/` has an ESLint flat-config template for **import rules**: UI libraries only inside the primitives folder, layer boundaries, and features only importable through their public API. See [configs/eslint/README.md](configs/eslint/README.md).
 
 ## Tuning tips
 

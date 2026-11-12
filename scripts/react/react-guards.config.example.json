@@ -1,0 +1,75 @@
+{
+  "include": ["src"],
+  "exclude": ["src/**/*.generated.*", "src/**/__generated__/**"],
+  "requireIgnoreReason": true,
+  "baseline": ".react-guards-baseline.json",
+
+  "primitives": {
+    "exclude": ["src/components/ui/**", "**/*.stories.tsx", "**/*.test.tsx", "**/*.spec.tsx"],
+    "checkCreateElement": true,
+    "checkStyled": true,
+    "rules": {
+      "input":    { "use": "Input",     "from": "@/components/ui/input", "allowIf": { "type": ["hidden"] } },
+      "button":   { "use": "Button",    "from": "@/components/ui/button" },
+      "textarea": { "use": "Textarea",  "from": "@/components/ui/textarea" },
+      "select":   { "use": "Select",    "from": "@/components/ui/select" },
+      "label":    { "use": "Label",     "from": "@/components/ui/label" },
+      "a":        { "use": "Link",      "from": "@/components/ui/link" },
+      "img":      { "use": "Image",     "from": "@/components/ui/image" },
+      "table":    { "use": "Table",     "from": "@/components/ui/table" },
+      "dialog":   { "use": "Dialog",    "from": "@/components/ui/dialog" },
+      "hr":       { "use": "Separator", "from": "@/components/ui/separator" },
+      "h1":       { "use": "Heading",   "message": "use <Heading level={1} /> from \"@/components/ui/typography\"" },
+      "h2":       { "use": "Heading",   "message": "use <Heading level={2} /> from \"@/components/ui/typography\"" },
+      "h3":       { "use": "Heading",   "message": "use <Heading level={3} /> from \"@/components/ui/typography\"" }
+    }
+  },
+
+  "tokens": {
+    "exclude": ["src/styles/tokens.*", "src/styles/theme.*", "src/components/ui/**", "**/*.stories.*", "**/*.test.*"],
+    "hint": "use a token from src/styles/tokens.ts, a CSS variable (var(--…)) or a Tailwind theme class",
+    "colors": true,
+    "units": true,
+    "allowUnitValues": ["0", "0px", "1px"],
+    "tailwindArbitrary": true,
+    "allowArbitrary": ["^grid-(cols|rows)-", "^[\\w-]+-\\[var\\(--", "^[\\w-]+-\\[calc\\("],
+    "inlineStyle": "values",
+    "severity": { "inline-style": "warn" }
+  },
+
+  "naming": {
+    "componentFileCase": "PascalCase",
+    "matchExportToFile": true,
+    "maxComponentsPerFile": 1,
+    "allowCompoundComponents": true,
+    "hookFileCase": "camelCase",
+    "hooksLocation": [],
+    "folderCase": ["kebab-case"],
+    "otherFileCase": null,
+    "exclude": ["src/components/ui/**", "**/*.d.ts", "**/*.config.*", "**/*.stories.*", "**/*.test.*", "**/*.spec.*"]
+  },
+
+  "size": {
+    "maxComponentLines": 200,
+    "maxHookLines": 120,
+    "maxState": 5,
+    "maxEffects": 3,
+    "maxProps": 10,
+    "maxJsxDepth": 8,
+    "maxFileLines": 400,
+    "severity": { "file-lines": "warn", "jsx-depth": "warn" }
+  },
+
+  "fetching": {
+    "allowedIn": [
+      "src/api/**", "src/**/api/**", "src/services/**", "src/**/queries/**",
+      "src/**/*.server.{ts,tsx}", "src/server/**", "src/app/**/route.{ts,js}", "src/pages/api/**"
+    ],
+    "forbiddenImports": ["axios", "ky", "ofetch", "node-fetch", "cross-fetch", "graphql-request"],
+    "forbiddenCalls": ["fetch", "window.fetch", "axios", "axios.*", "ky", "ky.*", "$fetch", "ofetch"],
+    "effectFetchPattern": "^(fetch|load|get|request|query)[A-Z]",
+    "allowServerComponents": true,
+    "appDir": "src/app",
+    "hint": "move it to src/api and consume it with a query hook (useQuery)"
+  }
+}
